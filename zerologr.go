@@ -85,8 +85,7 @@ func (ls *LogSink) Init(ri logr.RuntimeInfo) {
 // Enabled tests whether this LogSink is enabled at the specified V-level.
 func (ls *LogSink) Enabled(level int) bool {
 	// Optimization: Info() will check level internally.
-	const traceLevel = 1 - int(zerolog.TraceLevel)
-	return level <= traceLevel
+	return level <= 1-int(ls.l.GetLevel())
 }
 
 // Info logs a non-error message at specified V-level with the given key/value pairs as context.
